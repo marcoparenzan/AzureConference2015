@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewModelDef>
+  <Name>CashRegister</Name>
+  <Commands>
+    <ViewModelCommandRef>
+      <Name>AddPizza</Name>
+    </ViewModelCommandRef>
+    <ViewModelCommandRef>
+      <Name>AddIngredient</Name>
+    </ViewModelCommandRef>
+    <ViewModelCommandRef>
+      <Name>SendOrder</Name>
+    </ViewModelCommandRef>
+  </Commands>
+  <Properties>
+    <ViewModelPropertyDef>
+      <Name>Total</Name>
+      <TypeName>decimal</TypeName>
+    </ViewModelPropertyDef>
+  </Properties>
+</ViewModelDef>
