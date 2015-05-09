@@ -13,13 +13,20 @@ using System.Threading.Tasks;
 
 namespace Call4Pizza.Models.AggregateRoots
 {
-    public class QueryingOrder : Call4PizzaAggregateRoot<CommandingOrder, Guid>, IAggregateRootSerializable
+    public class QueryingOrder : Call4PizzaAggregateRoot<QueryingOrder, Guid>, IAggregateRootSerializable
     {
         protected List<OrderPizza> _pizzas;
         protected List<OrderBeverage> _beverages;
 
-        protected int _seatings;
         protected Guid _commandId;
+        protected string _address;
+        protected string _country;
+        protected DateTime _date;
+        protected string _email;
+        protected string _firstName;
+        protected string _lastName;
+        protected string _phone;
+        protected string _province;
 
         public QueryingOrder()
         {
@@ -44,7 +51,6 @@ namespace Call4Pizza.Models.AggregateRoots
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("CommandId"); writer.WriteValue(_commandId);
-                    writer.WritePropertyName("Seatings"); writer.WriteValue(_seatings);
                     writer.WritePropertyName("Pizzas"); serializer.Serialize(writer, _pizzas);
                     writer.WritePropertyName("Beverages"); serializer.Serialize(writer, _beverages);
                     writer.WriteEndObject();
@@ -95,8 +101,29 @@ namespace Call4Pizza.Models.AggregateRoots
                 case "CommandId":
                     _commandId = Guid.Parse(reader.ReadAsString());reader.Read();
                     break;
-                case "Seatings":
-                    _seatings = reader.ReadAsInt32() ?? 0;reader.Read();
+                case "Address":
+                    _address = reader.ReadAsString(); reader.Read();
+                    break;
+                case "Country":
+                    _country = reader.ReadAsString(); reader.Read();
+                    break;
+                case "Date":
+                    _date = reader.ReadAsDateTime().Value; reader.Read();
+                    break;
+                case "Email":
+                    _email = reader.ReadAsString(); reader.Read();
+                    break;
+                case "FirstName":
+                    _firstName = reader.ReadAsString(); reader.Read();
+                    break;
+                case "LastName":
+                    _lastName = reader.ReadAsString(); reader.Read();
+                    break;
+                case "Phone":
+                    _phone = reader.ReadAsString(); reader.Read();
+                    break;
+                case "Province":
+                    _province = reader.ReadAsString(); reader.Read();
                     break;
                 case "Pizzas":
                     reader.Read();
@@ -107,7 +134,10 @@ namespace Call4Pizza.Models.AggregateRoots
                     _beverages = serializer.Deserialize<List<OrderBeverage>>(reader);reader.Read();
                     break;
                 default:
-                    throw new NotSupportedException("Property not recognized");
+                    // skip unuseful properties
+                    reader.ReadAsString(); reader.Read();
+                    // throw new NotSupportedException("Property not recognized");
+                    break;
             }
         }
 
@@ -118,7 +148,13 @@ namespace Call4Pizza.Models.AggregateRoots
                 ,
                 Quantity = xx.Quantity
                 ,
+                Date = _date
+                ,
                 CommandId = _commandId
+                ,
+                Name = string.Format("{0} {1}", _lastName, _firstName)
+                ,
+                City = _province
             }).ToList();
         }
     }

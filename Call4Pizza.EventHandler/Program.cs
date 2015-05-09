@@ -39,17 +39,24 @@ namespace Call4Pizza.EventHandler
             [ServiceBusTrigger("events", "pizza")] EventEnvelope<OrderCreated> envelope,
             TextWriter log)
         {
-            var repository = Container.Resolve<IRepository<QueryingOrder, Guid>>();
-            var e = envelope.Event as OrderCreated;
-            var order = repository.GetById(e.EventId);
+            try
+            {
+                var repository = Container.Resolve<IRepository<QueryingOrder, Guid>>();
+                var e = envelope.Event as OrderCreated;
+                var order = repository.GetById(e.EventId);
 
-            var pizzas = order.PizzasToDo();
-            if (pizzas.Any())
-            { 
-                var append = Container.Resolve<IDataSourceAppend<PizzaToDoDTO>>();
-                await append.AppendAsync(pizzas);
-                var client = Container.Resolve<ITotem>();
-                await client.NewPizzasToPrepareAsync(e.EventId);
+                var pizzas = order.PizzasToDo();
+                if (pizzas.Any())
+                {
+                    var append = Container.Resolve<IDataSourceAppend<PizzaToDoDTO>>();
+                    await append.AppendAsync(pizzas);
+                    var client = Container.Resolve<ITotem>();
+                    await client.NewPizzasToPrepareAsync(e.EventId);
+                }
+            }
+            catch (Exception ex)
+            {
+                // log...
             }
         }
     }

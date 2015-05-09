@@ -9,13 +9,37 @@
       <Name>AddIngredient</Name>
     </ViewModelCommandRef>
     <ViewModelCommandRef>
-      <Name>SendOrder</Name>
+      <Name>CreateOrder</Name>
     </ViewModelCommandRef>
   </Commands>
   <Properties>
     <ViewModelPropertyDef>
+      <Name>LastName</Name>
+      <TypeName>string</TypeName>
+    </ViewModelPropertyDef>
+    <ViewModelPropertyDef>
+      <Name>FirstName</Name>
+      <TypeName>string</TypeName>
+    </ViewModelPropertyDef>
+    <ViewModelPropertyDef>
+      <Name>EMail</Name>
+      <TypeName>string</TypeName>
+    </ViewModelPropertyDef>
+    <ViewModelPropertyDef>
       <Name>Total</Name>
       <TypeName>decimal</TypeName>
+    </ViewModelPropertyDef>
+    <ViewModelPropertyDef>
+      <Name>PizzaCapricciosa</Name>
+      <TypeName>int</TypeName>
+    </ViewModelPropertyDef>
+    <ViewModelPropertyDef>
+      <Name>PizzaDiavola</Name>
+      <TypeName>int</TypeName>
+    </ViewModelPropertyDef>
+    <ViewModelPropertyDef>
+      <Name>Beer</Name>
+      <TypeName>int</TypeName>
     </ViewModelPropertyDef>
   </Properties>
 </ViewModelDef>

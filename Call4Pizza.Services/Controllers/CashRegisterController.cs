@@ -31,5 +31,13 @@ namespace Call4Pizza.Services.Controllers
         {
             await CashRegister.Handle(command);
         }
+
+        [AllowAnonymous]
+        [Route("Heartbeat")]
+        [HttpGet]
+        public DateTime Heartbeat()
+        {
+            return DateTime.Now;
+        }
     }
 }

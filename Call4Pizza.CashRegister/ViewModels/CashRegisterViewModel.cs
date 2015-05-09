@@ -30,9 +30,9 @@ namespace Call4Pizza.CashRegister.ViewModels
             {
                 Source = CommandSource.CashRegister
                 ,
-                LastName = "Rossi"
+                LastName = this.LastName
                 ,
-                FirstName = "Mario"
+                FirstName = this.FirstName
                 ,
                 SourceId = "CashRegister1"
                 ,
@@ -46,15 +46,15 @@ namespace Call4Pizza.CashRegister.ViewModels
                 ,
                 Phone = "348"
                 ,
-                EMail = "mario.rossi@somewhere.it"
+                EMail = this.EMail
                 ,
                 Date = DateTime.UtcNow
                 ,
-                PizzaCapricciosa = 1
+                PizzaCapricciosa = this.PizzaCapricciosa
                 ,
-                PizzaDiavola=2
+                PizzaDiavola=this.PizzaDiavola
                 ,
-                Beer = 3
+                Beer = this.Beer
             });
         }
 

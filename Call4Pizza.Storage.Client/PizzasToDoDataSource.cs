@@ -23,8 +23,8 @@ namespace Call4Pizza.Storage.Client
 
             public TE(PizzaToDoDTO dto)
             {
-                this.PartitionKey = City;
-                this.RowKey = string.Format("{0}_{1}", dto.CommandId, dto.Date.ToString("yyyyMMddhhmmss"));
+                this.PartitionKey = dto.City;
+                this.RowKey = string.Format("{0}_{1}", dto.CommandId, dto.Description);
                 this.CommandId = dto.CommandId;
                 this.Date = dto.Date;
                 this.Description = dto.Description;
@@ -63,6 +63,10 @@ namespace Call4Pizza.Storage.Client
                 Description = xx.Description
                 ,
                 Quantity = xx.Quantity
+                ,
+                Name = xx.Name
+                ,
+                City = xx.City
             }).ToList();
             return items;
         }

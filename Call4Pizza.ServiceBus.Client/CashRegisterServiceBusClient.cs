@@ -1,6 +1,7 @@
 ﻿using Call4Pizza.Models;
 using Call4Pizza.Models.Commands;
 using Call4Pizza.Models.Contracts;
+using Microsoft.Azure;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Microsoft.WindowsAzure;

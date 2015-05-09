@@ -15,7 +15,7 @@ namespace Call4Pizza.Services
         public IoCContainer()
         {
             Register(Classes.FromAssemblyNamed("Call4Pizza.Models").InNamespace("Call4Pizza.Models.Contracts"));
-            Register(Classes.FromAssemblyNamed("Call4Pizza.Services").InNamespace("Call4Pizza.Services.Controllers"));
+            Register(Classes.FromAssemblyNamed("Call4Pizza.Services").InNamespace("Call4Pizza.Services.Controllers").LifestylePerWebRequest());
             Register(Classes.FromAssemblyNamed("Call4Pizza.ServiceBus.Client").InNamespace("Call4Pizza.ServiceBus.Client").WithServiceAllInterfaces());
         }
 

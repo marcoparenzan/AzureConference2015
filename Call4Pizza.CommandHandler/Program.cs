@@ -34,7 +34,7 @@ namespace Call4Pizza.CommandHandler
             host.Start();
         }
 
-        public static void OnSendOrderCommand(
+        public static void OnCreateOrderCommand(
             [ServiceBusTrigger("commands")] CommandEnvelope<CreateOrder> envelope,
             TextWriter log)
         {

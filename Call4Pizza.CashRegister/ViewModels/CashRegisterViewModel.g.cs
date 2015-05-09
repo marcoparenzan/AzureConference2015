@@ -125,13 +125,13 @@ namespace Call4Pizza.CashRegister.ViewModels
 			
 			#endregion		
 				
-			#region Local Command SendOrder
+			#region Local Command CreateOrder
 			
 			public partial class CreateOrderArgs: BaseArgs
 			{
 			}
 			
-			public CreateOrderArgs SendOrderCommandArgs
+			public CreateOrderArgs CreateOrderCommandArgs
 			{
 				get
 				{
@@ -143,17 +143,17 @@ namespace Call4Pizza.CashRegister.ViewModels
 
 			partial void OnCreateOrder(CreateOrderArgs args);
 
-			partial void OnSendOrderEnable(Action<bool> enableHandler);
+			partial void OnCreateOrderEnable(Action<bool> enableHandler);
 
-			private RelayCommand<CreateOrderArgs> _sendOrder; // ICommand
+			private RelayCommand<CreateOrderArgs> _createOrder; // ICommand
 
-			public RelayCommand<CreateOrderArgs> SendOrder // ICommand
+			public RelayCommand<CreateOrderArgs> CreateOrder // ICommand
 			{
 				get
 				{
-					if (_sendOrder == null)
+					if (_createOrder == null)
 					{
-						_sendOrder = new RelayCommand<CreateOrderArgs>(new Action<CreateOrderArgs>(
+						_createOrder = new RelayCommand<CreateOrderArgs>(new Action<CreateOrderArgs>(
 							_ =>
 							{
 								try
@@ -168,13 +168,13 @@ namespace Call4Pizza.CashRegister.ViewModels
 						),
 						_ => {
 							bool enabled = true;
-							OnSendOrderEnable(enable => {
+							OnCreateOrderEnable(enable => {
 								enabled = enable;
 							});
 							return enabled;
 						});
 					}
-					return _sendOrder;
+					return _createOrder;
 				}
 			}
 			
@@ -182,7 +182,100 @@ namespace Call4Pizza.CashRegister.ViewModels
 			
 		partial void OnException(Exception ex);
 
-					#region Total Property
+					#region LastName Property
+			
+			private string _lastName;
+			
+			partial void OnSetLastName(string lastLastName, Action<string> handleSet);
+			
+			private void SetLastName(string alternateValue)
+			{
+				_lastName = alternateValue;
+			}
+
+			public string LastName
+			{
+				get
+				{
+					return _lastName;
+				}
+				
+				set
+				{
+					if (value == _lastName) return;
+					var lastLastName = _lastName;
+					_lastName = value;
+					OnSetLastName(
+						lastLastName
+						, new Action<string>(SetLastName));
+					Notify("LastName");
+				}
+			}
+			
+			#endregion
+						#region FirstName Property
+			
+			private string _firstName;
+			
+			partial void OnSetFirstName(string lastFirstName, Action<string> handleSet);
+			
+			private void SetFirstName(string alternateValue)
+			{
+				_firstName = alternateValue;
+			}
+
+			public string FirstName
+			{
+				get
+				{
+					return _firstName;
+				}
+				
+				set
+				{
+					if (value == _firstName) return;
+					var lastFirstName = _firstName;
+					_firstName = value;
+					OnSetFirstName(
+						lastFirstName
+						, new Action<string>(SetFirstName));
+					Notify("FirstName");
+				}
+			}
+			
+			#endregion
+						#region EMail Property
+			
+			private string _eMail;
+			
+			partial void OnSetEMail(string lastEMail, Action<string> handleSet);
+			
+			private void SetEMail(string alternateValue)
+			{
+				_eMail = alternateValue;
+			}
+
+			public string EMail
+			{
+				get
+				{
+					return _eMail;
+				}
+				
+				set
+				{
+					if (value == _eMail) return;
+					var lastEMail = _eMail;
+					_eMail = value;
+					OnSetEMail(
+						lastEMail
+						, new Action<string>(SetEMail));
+					Notify("EMail");
+				}
+			}
+			
+			#endregion
+						#region Total Property
 			
 			private decimal _total;
 			
@@ -209,6 +302,99 @@ namespace Call4Pizza.CashRegister.ViewModels
 						lastTotal
 						, new Action<decimal>(SetTotal));
 					Notify("Total");
+				}
+			}
+			
+			#endregion
+						#region PizzaCapricciosa Property
+			
+			private int _pizzaCapricciosa;
+			
+			partial void OnSetPizzaCapricciosa(int lastPizzaCapricciosa, Action<int> handleSet);
+			
+			private void SetPizzaCapricciosa(int alternateValue)
+			{
+				_pizzaCapricciosa = alternateValue;
+			}
+
+			public int PizzaCapricciosa
+			{
+				get
+				{
+					return _pizzaCapricciosa;
+				}
+				
+				set
+				{
+					if (value == _pizzaCapricciosa) return;
+					var lastPizzaCapricciosa = _pizzaCapricciosa;
+					_pizzaCapricciosa = value;
+					OnSetPizzaCapricciosa(
+						lastPizzaCapricciosa
+						, new Action<int>(SetPizzaCapricciosa));
+					Notify("PizzaCapricciosa");
+				}
+			}
+			
+			#endregion
+						#region PizzaDiavola Property
+			
+			private int _pizzaDiavola;
+			
+			partial void OnSetPizzaDiavola(int lastPizzaDiavola, Action<int> handleSet);
+			
+			private void SetPizzaDiavola(int alternateValue)
+			{
+				_pizzaDiavola = alternateValue;
+			}
+
+			public int PizzaDiavola
+			{
+				get
+				{
+					return _pizzaDiavola;
+				}
+				
+				set
+				{
+					if (value == _pizzaDiavola) return;
+					var lastPizzaDiavola = _pizzaDiavola;
+					_pizzaDiavola = value;
+					OnSetPizzaDiavola(
+						lastPizzaDiavola
+						, new Action<int>(SetPizzaDiavola));
+					Notify("PizzaDiavola");
+				}
+			}
+			
+			#endregion
+						#region Beer Property
+			
+			private int _beer;
+			
+			partial void OnSetBeer(int lastBeer, Action<int> handleSet);
+			
+			private void SetBeer(int alternateValue)
+			{
+				_beer = alternateValue;
+			}
+
+			public int Beer
+			{
+				get
+				{
+					return _beer;
+				}
+				
+				set
+				{
+					if (value == _beer) return;
+					var lastBeer = _beer;
+					_beer = value;
+					OnSetBeer(
+						lastBeer
+						, new Action<int>(SetBeer));
+					Notify("Beer");
 				}
 			}
 			
